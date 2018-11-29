@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Login from './components/Login'
-
+import Dashboard from './components/Dashboard'
 class App extends Component {
   state ={
     login: false
@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     return(
       <div>
-        {!this.state.login?<Login loginState={this.setLoginState}/>:<div>aaaa</div>}
+        {!this.state.login?<Login loginState={this.setLoginState}/>:<Dashboard/>}
       </div>
     )
   }
