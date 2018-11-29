@@ -31,7 +31,7 @@ class Login extends Component {
     const { classes } = this.props
     document.body.style = 'background: #0277bd'
     return (
-      <MuiThemeProvider>
+
         <div className={classes.container}>
           <form className={classes.form}>
             <img alt='logo' src={ require('../img/logo.png') } className={classes.img}/>
@@ -85,7 +85,7 @@ class Login extends Component {
             </Button>
           </form>
       </div>
-      </MuiThemeProvider>
+
     )
   }
 }
