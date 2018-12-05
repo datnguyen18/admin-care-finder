@@ -80,6 +80,21 @@ class AuthenticateUser extends React.Component {
     this.setState({ openModal: false })
   }
 
+  verifyUser = async () => {
+    const response = await fetch(`http://localhost:3000/doctor/authorization/${this.state.user._id}`,
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    )
+    const responseUnauthenticatedDoctor =  await fetch('http://localhost:3000/doctor/unauthenticated')
+    const data = await responseUnauthenticatedDoctor.json();
+    this.setState({ listUser: data.doctors })
+    this.setState({openModal: false})
+  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -121,15 +136,15 @@ class AuthenticateUser extends React.Component {
           TransitionComponent={Transition}
         >
 
-          <AppBar className={classes.appBar}>
-            <Toolbar>
+          <AppBar position="fixed" className={classes.appBar}>
+            <Toolbar >
               <IconButton color="inherit" onClick={this.handleClose} aria-label="Close">
                 <CloseIcon />
               </IconButton>
               <Typography variant="h6" color="inherit" className={classes.flex}>
                 Information
               </Typography>
-              <Button color="inherit" onClick={this.handleClose}>
+              <Button color="inherit" onClick={this.verifyUser}>
                 Confirm
               </Button>
               <Button color="inherit" onClick={this.handleClose}>
