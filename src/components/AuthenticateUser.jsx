@@ -43,11 +43,26 @@ const styles = theme => ({
   flex: {
     flex: 1,
   },
+  row: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.background.default,
+    },
+  },
 });
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
 }
+
+const CustomTableCell = withStyles(theme => ({
+  head: {
+    backgroundColor: "#757575",
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
 
 class AuthenticateUser extends React.Component {
 
@@ -103,26 +118,26 @@ class AuthenticateUser extends React.Component {
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
-                <TableCell>First Name</TableCell>
-                <TableCell>Last Name</TableCell>
-                <TableCell>Gender</TableCell>
-                <TableCell>Permission</TableCell>
-                <TableCell></TableCell>
+                <CustomTableCell>First Name</CustomTableCell>
+                <CustomTableCell>Last Name</CustomTableCell>
+                <CustomTableCell>Gender</CustomTableCell>
+                <CustomTableCell>Permission</CustomTableCell>
+                <CustomTableCell></CustomTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {this.state.listUser.map((user, index) => {
                 return (
-                  <TableRow key={user._id}>
-                    <TableCell component="th" scope="row">
+                  <TableRow key={user._id} className={classes.row}>
+                    <CustomTableCell component="th" scope="row">
                       {user.firstName}
-                    </TableCell>
-                    <TableCell >{user.lastName}</TableCell>
-                    <TableCell >{user.gender}</TableCell>
-                    <TableCell >{user.permission}</TableCell>
-                    <TableCell>
+                    </CustomTableCell>
+                    <CustomTableCell >{user.lastName}</CustomTableCell>
+                    <CustomTableCell >{user.gender}</CustomTableCell>
+                    <CustomTableCell >{user.permission}</CustomTableCell>
+                    <CustomTableCell>
                       <Button onClick={() => this.openModal(user._id)} className={classes.button}>Detail</Button>
-                    </TableCell>
+                    </CustomTableCell>
                   </TableRow>
                 );
               })}
@@ -136,7 +151,7 @@ class AuthenticateUser extends React.Component {
           TransitionComponent={Transition}
         >
 
-          <AppBar position="fixed" className={classes.appBar}>
+          <AppBar style={{ backgroundColor: '#2196F3' }} position="fixed" className={classes.appBar}>
             <Toolbar >
               <IconButton color="inherit" onClick={this.handleClose} aria-label="Close">
                 <CloseIcon />
