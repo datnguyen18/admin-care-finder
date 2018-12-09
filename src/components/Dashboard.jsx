@@ -22,6 +22,8 @@ import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 import Home from './Home'
 import AuthenticateUser from './AuthenticateUser'
+import UserManagement from './UserManagement'
+import Department from './Department'
 
 const drawerWidth = 240;
 
@@ -103,7 +105,8 @@ class DashBoard extends React.Component {
       <BrowserRouter>
         <div className={classes.root}>
           <CssBaseline />
-          <AppBar
+          <AppBar 
+            style={{ backgroundColor: '#2196F3' }}
             position="fixed"
             className={classNames(classes.appBar, {
               [classes.appBarShift]: open,
@@ -148,7 +151,19 @@ class DashBoard extends React.Component {
               <Link to="/authenticate" style={{ textDecoration: 'none' }}>
                 <ListItem button>
                   <ListItemIcon><InboxIcon /></ListItemIcon>
-                  <ListItemText primary={"Authenticate"} />
+                  <ListItemText primary={"Authenticate User"} />
+                </ListItem>
+              </Link>
+              <Link to="/department" style={{ textDecoration: 'none' }}>
+                <ListItem button>
+                  <ListItemIcon><InboxIcon /></ListItemIcon>
+                  <ListItemText primary={"Department"} />
+                </ListItem> 
+              </Link>
+              <Link to="/user" style={{ textDecoration: 'none' }}>
+                <ListItem button>
+                  <ListItemIcon><InboxIcon /></ListItemIcon>
+                  <ListItemText primary={"Manage User"} />
                 </ListItem>
               </Link>
             </List>
@@ -161,7 +176,9 @@ class DashBoard extends React.Component {
           >
             <div className={classes.drawerHeader} />
             <Route exact path="/" component={Home} />
-            <Route path="/authenticate" component={AuthenticateUser} />
+            <Route path="/department" component={Department} />
+            <Route path="/user" component={UserManagement}/>
+            <Route/>
           </main>
         </div>
 
