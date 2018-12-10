@@ -22,7 +22,8 @@ import Edit from '@material-ui/icons/Edit'
 import Clear from '@material-ui/icons/Clear'
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
-
+import UserDetail from './UserDetail'
+// import EditUser from './EditUser'
 const styles = theme => ({
   root: {
     width: '100%',
@@ -127,7 +128,7 @@ class AuthenticateUser extends React.Component {
                 <CustomTableCell>First Name</CustomTableCell>
                 <CustomTableCell>Last Name</CustomTableCell>
                 <CustomTableCell>Gender</CustomTableCell>
-                <CustomTableCell>Permission</CustomTableCell>
+                <CustomTableCell>ROLE</CustomTableCell>
                 <CustomTableCell>Email</CustomTableCell>
                 <CustomTableCell></CustomTableCell>
               </TableRow>
@@ -145,7 +146,7 @@ class AuthenticateUser extends React.Component {
                     <CustomTableCell >{user.permission}</CustomTableCell>
                     <CustomTableCell >{user.email}</CustomTableCell>
                     <CustomTableCell>
-                      <IconButton className={classes.icon}>
+                      <IconButton onClick={() => this.openModal(user._id)} className={classes.icon}>
                         <Visibility  color="primary" />
                       </IconButton>
                       <IconButton className={classes.icon}>
@@ -168,45 +169,7 @@ class AuthenticateUser extends React.Component {
           TransitionComponent={Transition}
         >
 
-          <AppBar style={{ backgroundColor: '#2196F3' }} position="fixed" className={classes.appBar}>
-            <Toolbar >
-              <IconButton color="inherit" onClick={this.handleClose} aria-label="Close">
-                <CloseIcon />
-              </IconButton>
-              <Typography variant="h6" color="inherit" className={classes.flex}>
-                Information
-              </Typography>
-              <Button color="inherit" onClick={this.verifyUser}>
-                Confirm
-              </Button>
-              <Button color="inherit" onClick={this.handleClose}>
-                Decline
-              </Button>
-            </Toolbar>
-          </AppBar>
-          <List>
-            <ListItem>
-              <ListItemText primary="First Name" secondary={this.state.user.firstName} />
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <ListItemText primary="Last Name" secondary={this.state.user.lastName} />
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <ListItemText primary="Email" secondary={this.state.user.email} />
-            </ListItem>
-            <Divider />
-            <ListItem style={{flexDirection: "column"}}>
-              <ListItemText style={{alignSelf: "flex-start"}} primary="Image of identification"/>
-              <img src={this.state.user.imageOfIdentificationBack}/>
-              <img src={this.state.user.imageOfIdentificationFront}/>
-            </ListItem>
-            <ListItem  style={{flexDirection: "column"}}>
-              <ListItemText style={{alignSelf: "flex-start"}} primary="Image of diploma"/>
-              <img src={this.state.user.imageOfDiploma}/>
-            </ListItem>
-          </List>
+          <UserDetail user={this.state.user}/>
         </Dialog>
       </div>
     );
