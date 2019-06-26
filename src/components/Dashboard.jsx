@@ -122,7 +122,7 @@ class DashBoard extends React.Component {
                 <MenuIcon />
               </IconButton>
               <Typography variant="h6" color="inherit" noWrap>
-                Admin Page
+                Care Finder Admin
             </Typography>
             </Toolbar>
           </AppBar>

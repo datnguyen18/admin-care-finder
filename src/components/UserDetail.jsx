@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import classNames from 'classnames'
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { Paper, Grid, AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
@@ -43,6 +40,14 @@ const styles = theme => ({
   },
 });
 class UserDetail extends Component {
+  state = {
+    closeButton: true
+  }
+  handleClose = () => {
+    this.setState({closeButton: false}, () => {
+      this.props.closeButton(this.state.closeButton)
+    })
+  }
   render() {
     const { classes, user } = this.props;
     console.log(user)

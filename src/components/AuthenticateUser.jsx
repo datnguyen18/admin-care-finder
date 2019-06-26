@@ -145,7 +145,8 @@ class AuthenticateUser extends React.Component {
           </Table>
         </Paper>
         <Dialog
-          
+          fullWidth={true}
+          maxWidth='sm'
           open={this.state.openModal}
           onClose={this.handleClose}
           TransitionComponent={Transition}
